@@ -3,11 +3,17 @@
 FRIEDv2 readme.
 
 Columns are
+
 Host star mass [Msol],
+
 Disc outer radius [au],
+
 Surface density at 1au [gcm-2] (This is just the surface density normalization for the an R^{-1} surface density profile. Use the next column, not this one, in disc evolutionary models.)
+
 Surface density at disc outer edge [gcm-2],
+
 FUV field strength at outer edge of grid [G0],
+
 Mass loss rate [log10(Msol/yr)],
 
 Filenames
