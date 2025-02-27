@@ -110,7 +110,7 @@ class FRIED():
         interp = LinearNDInterpolator(list(zip(r, sigma)), mdot)
 
         # interpolate to new grid
-        if (self.radial==None) | (self.sigma_g==None):
+        if (self.radial is None) | (self.sigma_g is None):
             print('No radial grid/ gas surface density is given.')
             print('Using the default grid.') 
             self.r_new = np.linspace(5, r.max(), self.Nr)[::-1]
