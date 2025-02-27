@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import math
 from scipy.interpolate import LinearNDInterpolator, interp1d
+import os
 
 class FRIED():
         
@@ -57,8 +58,9 @@ class FRIED():
         
         
     def read_data(self):
-
-        df = pd.read_csv('./data/'+self.name, names = ['Host star mass [Msol]', 'Disc outer radius [au]', 
+        
+        path=os.getcwd()
+        df = pd.read_csv(path+'/data/'+self.name, names = ['Host star mass [Msol]', 'Disc outer radius [au]', 
                                 'Surface density at 1au [gcm-2]', 'Surface density at disc outer edge [gcm-2]',
                                 'FUV field strength at outer edge of grid [G0]', 'Mass loss rate [log10(Msol/yr)]'])
         df2 = df[df['FUV field strength at outer edge of grid [G0]'] == self.FUV]
