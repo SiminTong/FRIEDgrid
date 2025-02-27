@@ -5,7 +5,7 @@ from scipy.interpolate import LinearNDInterpolator, interp1d
 
 class FRIED():
         
-    def __init__(self, mstar=0.1, pah=0.1, dust=True, fuv=10, Nr= 1000, Ns=1000):
+    def __init__(self, mstar=0.1, pah=0.1, dust=True, fuv=10, Nr= 1000, Ns=1000, radial=None, sigma_g=None):
 
         mstar_ls = [0.1, 0.3, 0.6, 1.0, 1.5, 3.0]
         pah_ls   = [0.1, 0.5]
@@ -45,7 +45,6 @@ class FRIED():
         
         self.name = f'FRIEDV2_{self.mstar}Msol_fPAH{self.pah_ratio}_{suffix}.dat'
         self.data      = self.read_data()
-        #self.data_shape()
         self.sigma_uni, self.N, self.M = self.data_shape()
         self.sigma_hydro = np.zeros((self.N,self.M))
 
@@ -53,6 +52,8 @@ class FRIED():
         self.sigma_new = None
         self.mdot_new  = None
         
+        self.radial    = radial
+        self.sigma_g   = sigma_g
         
         
     def read_data(self):
@@ -109,9 +110,18 @@ class FRIED():
         interp = LinearNDInterpolator(list(zip(r, sigma)), mdot)
 
         # interpolate to new grid
-        self.r_new = np.linspace(5, r.max(), self.Nr)[::-1]
-        self.sigma_new = np.logspace(np.log10(sigma.min()), np.log10(sigma.max()), self.Ns)
-        xx, yy = np.meshgrid(self.r_new, self.sigma_new)
+        if (self.radial==None) | (self.sigma_g==None):
+            print('No radial grid/ gas surface density is given.')
+            print('Using the default grid.') 
+            self.r_new = np.linspace(5, r.max(), self.Nr)[::-1]
+            self.sigma_new = np.logspace(np.log10(sigma.min()), np.log10(sigma.max()), self.Ns)
+            xx, yy = np.meshgrid(self.r_new, self.sigma_new)
+        else:
+            self.r_new = self.radial
+            self.sigma_new = self.sigma_g
+            xx  = self.r_new
+            yy  = self.sigma_new
+        
         mdot_new = interp(xx, yy).T
        
         # remove mdot estimated from intepolation beyond the hydro data.
