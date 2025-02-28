@@ -117,13 +117,14 @@ class FRIED():
             print('Using the default grid.') 
             self.r_new = np.linspace(5, r.max(), self.Nr)[::-1]
             self.sigma_new = np.logspace(np.log10(sigma.min()), np.log10(sigma.max()), self.Ns)
-            xx, yy = np.meshgrid(self.r_new, self.sigma_new)
+        #    
         else:
             self.r_new = self.radial
             self.sigma_new = self.sigma_g
-            xx  = self.r_new
-            yy  = self.sigma_new
+            #xx  = self.r_new
+            #yy  = self.sigma_new
         
+        xx, yy = np.meshgrid(self.r_new, self.sigma_new)
         mdot_new = interp(xx, yy).T
        
         # remove mdot estimated from intepolation beyond the hydro data.
@@ -140,6 +141,7 @@ class FRIED():
         sigma_up = sigma_up_lim_fit(self.r_new)
         sigma_lo = sigma_lo_lim_fit(self.r_new)
 
+        # this only applies to case where mdot_new is two dimensional.
         for ind, val in enumerate(self.r_new):
             for ind_2, val2 in enumerate(self.sigma_new):
                 if (val2> sigma_up[ind]) | (val2 < sigma_lo[ind]):
