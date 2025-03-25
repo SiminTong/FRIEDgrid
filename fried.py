@@ -141,7 +141,6 @@ class FRIED():
         sigma_up = sigma_up_lim_fit(self.r_new)
         sigma_lo = sigma_lo_lim_fit(self.r_new)
 
-        # this only applies to case where mdot_new is two dimensional.
         for ind, val in enumerate(self.r_new):
             for ind_2, val2 in enumerate(self.sigma_new):
                 if (val2> sigma_up[ind]) | (val2 < sigma_lo[ind]):
@@ -173,3 +172,32 @@ class FRIED():
                 pass
 
         return
+
+    
+    #def mdot_r(self):
+    #    '''compute the mass-loss rate as a function of radius from FRIED grid
+    #    
+    #    Input:
+    #    ------
+    #    sim from DustPy for radial grid and gas surface density
+    #    mstar: mass of central star [Msun]
+    #    pah: ratio of PAH to dust ??
+    #    dust: boolean, whether consider dust growth
+    #    fuv : strength of FUV
+    #
+    #    Output:
+    #    -------
+    #    mdot: Mass-loss rate as a function of radius [Msun/year]
+    #    '''
+    #
+    #    f = FRIED(self.mstar, self.pah_ratio, self.dust_grow, self.FUV, self.radial, self.sigma_g)
+    #    f.interp_hdyro_mdot()
+    #    f.extrap_hydro_mdot()
+    #    mdot= np.zeros(len(sim.grid.r))
+    #    for i in range(len(sim.grid.r)):
+    #        mdot[i] = f.mdot_new[i, i]
+    #
+    #    return mdot
+
+
+        
