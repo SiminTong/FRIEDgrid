@@ -108,8 +108,9 @@ class FRIED():
         
         r = self.data['Disc outer radius [au]'].values
         sigma = self.data['Surface density at disc outer edge [gcm-2]'].values
-        mdot = 10**(self.data['Mass loss rate [log10(Msol/yr)]'].values)
-        interp = LinearNDInterpolator(list(zip(r, sigma)), mdot)
+        mdot_exp = self.data['Mass loss rate [log10(Msol/yr)]'].values
+        #mdot = 10**(self.data['Mass loss rate [log10(Msol/yr)]'].values)
+        interp = LinearNDInterpolator(list(zip(r, sigma)), mdot_exp)
 
         # interpolate to new grid
         if (self.radial is None) | (self.sigma_g is None):
@@ -146,7 +147,7 @@ class FRIED():
                 if (val2> sigma_up[ind]) | (val2 < sigma_lo[ind]):
                     mdot_new[ind, ind_2] = np.nan
         
-        self.mdot_new = mdot_new
+        self.mdot_new = 10**mdot_new
 
         return
 
