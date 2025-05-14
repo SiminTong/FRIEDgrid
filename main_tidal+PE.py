@@ -1,18 +1,9 @@
-from FRIEDgrid.fried import FRIED
 from dustpy.simulation import Simulation
-import dustpy
 import numpy as np
-import matplotlib.pyplot as plt
 import dustpy.constants as c
-from scipy.interpolate import LinearNDInterpolator
-from scipy.interpolate import make_smoothing_spline
-from scipy.interpolate import interp1d
-import astropy.constants as astro_c
-from astropy import units as u
-import sys
-sys.path.append('/home/s/st547/dustpy/dustpy_wind/code')
 from wind import *
 from simple_cal import *
+from funcs import *
 from fried_script import mdot_r, r_thin, sigma_dot_pe
 
 

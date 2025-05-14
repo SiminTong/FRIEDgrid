@@ -1,4 +1,5 @@
-from FRIEDgrid.fried import FRIED
+from FRIEDgrid.fried import FRIED # server/Jupyter Notebook
+#from fried import FRIED # server/jobs
 import dustpy.constants as c
 from scipy.interpolate import interp1d
 import numpy as np

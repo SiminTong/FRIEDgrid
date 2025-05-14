@@ -173,31 +173,5 @@ class FRIED():
 
         return
 
-    
-    #def mdot_r(self):
-    #    '''compute the mass-loss rate as a function of radius from FRIED grid
-    #    
-    #    Input:
-    #    ------
-    #    sim from DustPy for radial grid and gas surface density
-    #    mstar: mass of central star [Msun]
-    #    pah: ratio of PAH to dust ??
-    #    dust: boolean, whether consider dust growth
-    #    fuv : strength of FUV
-    #
-    #    Output:
-    #    -------
-    #    mdot: Mass-loss rate as a function of radius [Msun/year]
-    #    '''
-    #
-    #    f = FRIED(self.mstar, self.pah_ratio, self.dust_grow, self.FUV, self.radial, self.sigma_g)
-    #    f.interp_hdyro_mdot()
-    #    f.extrap_hydro_mdot()
-    #    mdot= np.zeros(len(sim.grid.r))
-    #    for i in range(len(sim.grid.r)):
-    #        mdot[i] = f.mdot_new[i, i]
-    #
-    #    return mdot
-
-
+        
         
